@@ -84,7 +84,7 @@ class ProductsController extends Controller
             $this->validate($request ,$rules,$coustomMessages );
 
             $keys = array(
-                
+
                 'category_id',
                 'section_id',
                 'product_name',
@@ -147,7 +147,7 @@ class ProductsController extends Controller
                         unlink($image_path_small);
                     }
                 }
-                
+
             }else if(!empty($data['current_main_image'])){
                     $name=$data['current_main_image'];
             }else{
@@ -180,7 +180,7 @@ class ProductsController extends Controller
             }
 
 
-            
+
             //save product details in product table
             $categoryDetails = Category::find($data['category_id']);
             $product->section_id = $categoryDetails['section_id'];
@@ -229,7 +229,7 @@ class ProductsController extends Controller
 
     public function deleteProduct($id)
     {
-        
+
        $productData= Product::where('id',$id)->first();
         $image_path_large = public_path('images/product_images/large/'.$productData['main_image']);
         $image_path_medium = public_path('images/product_images/medium/'.$productData['main_image']);
@@ -245,7 +245,7 @@ class ProductsController extends Controller
         if (file_exists($video_path)) {
              unlink($video_path);
         }
-        
+
         $productData= Product::where('id',$id)->delete();
 
         return redirect()->back()->with(Session::flash('success_message','product deleted successfuly'));
@@ -282,6 +282,10 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect()->back()->with(Session::flash('success_message','Video deleted successfuly'));
+
+    }
+    public function addeditattribute($id)
+    {
 
     }
 }

@@ -32,7 +32,7 @@
       @endif
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Products Table</h3> 
+              <h3 class="card-title">Products Table</h3>
             <a href="{{url('admin/add-edit-product')}}" class="btn btn-sm btn-primary float-sm-right" >Add Product</a>
             </div>
             <div class="card-body">
@@ -61,13 +61,13 @@
                   <td>{{$product->product_color}}</td>
                   <td> @if (!empty($product->main_image))
                         <div style="margin-left: 10px;margin-right: 10px;width: 120px;height: 120px;position: relative;overflow: hidden;border-radius: 5px;background-color: #ececec;">
-                        <img src="{{asset('images/product_images/large/'.$product->main_image)}}" alt="Avatar" style="display: inline;margin: 0 auto;height: 100%; vertical-align: middle;width: auto;"> 
+                        <img src="{{asset('images/product_images/large/'.$product->main_image)}}" alt="Avatar" style="display: inline;margin: 0 auto;height: 100%; vertical-align: middle;width: auto;">
                         </div>
-                      @else 
+                      @else
                         No Image
                       @endif
                   </td>
-                  <td> 
+                  <td>
                     @if (!empty($product->product_video))
                     <div style="margin-left: 10px;margin-right: 10px;width: 220px;height:120px; position: relative;overflow: hidden;border-radius: 5px;background-color: #ececec;"><video width="220" controls>
                             <source src="{{asset('videos/product_videos/'.$product->product_video)}}" type="video/mp4">
@@ -90,10 +90,12 @@
                       @endif
                   </td>
                 <td >
-                  <a class="btn btn-primary btn-sm px-3" href="{{url('admin/add-edit-product/'.$product->id)}}">Edit</a>
-                  &nbsp;&nbsp;
-                <a class="btn btn-danger btn-sm px-2 confirmDelete" name="product" nameid="{{$product->id}}" href="javascript:void(0)" {{-- href="{{url('admin/delete-product/'.$product->id)}}" --}}>Delete</a>
-                
+                    <a class="btn btn-success btn-sm " href="{{url('admin/add-edit-attribute/'.$product->id)}}" title="Add/Edit Attribute"><i class="fas fa-plus"></i></a>
+                    &nbsp;
+                    <a class="btn btn-primary btn-sm " href="{{url('admin/add-edit-product/'.$product->id)}}" title="Edit Product"><i class="fas fa-edit"></i></a>
+                  &nbsp;
+                <a class="btn btn-danger btn-sm  confirmDelete" name="product" nameid="{{$product->id}}" href="javascript:void(0)" {{-- href="{{url('admin/delete-product/'.$product->id)}}" --}} title="Delete Product"><i class="fas fa-trash"></i></a>
+
                 </td>
                 </tr>
                 @endforeach

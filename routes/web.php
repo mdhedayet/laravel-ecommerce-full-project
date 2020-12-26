@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Routing\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
         Route::post('appen-category-level','CategoryController@appCategoryLevel');
         Route::get('delete-category-image/{id}','CategoryController@deleteCtgImage');
         Route::get('delete-category/{id}','CategoryController@deleteCategory');
+
         //products
         Route::get('products','ProductsController@allProducts');
         Route::post('update-product-status','ProductsController@UpdateproductStatus');
@@ -46,6 +49,9 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
         Route::match(['get','post'],'add-edit-product/{id?}','ProductsController@addEditProduct');
         Route::get('delete-main-image/{id}','ProductsController@deleteproductImage');
         Route::get('delete-product-video/{id}','ProductsController@deleteproductVideo');
+
+        //attributes
+        Route::match(['get', 'post'], 'add-edit-attribute/{id}', 'ProductsController@addeditattribute');
 
     });
 });
