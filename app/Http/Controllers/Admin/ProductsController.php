@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Section;
+use App\ProductsAttribute;
 use App\Category;
 use Session;
 use Image;
@@ -288,18 +289,88 @@ class ProductsController extends Controller
     {
         
         if ($request->isMethod('post')) {
-            # code...
             $data = $request->all();
-            echo "<pre>"; print_r($data); die;
+            //echo "<pre>"; print_r($data); die;
 
+            foreach ($data['size'] as $key => $value) {
+                if (!empty($value)) {
+
+                    $attribute_size = ProductsAttribute::where(['product_id'=>$id,'size'=>$data['size'][$key]])->count();
+                    $attribute_sku = ProductsAttribute::where('sku', $value)->count();
+                    if($attribute_size > 0 && $attribute_sku > 0)
+                    {
+                         return redirect()->back()->with(Session::flash('error_message','This Size & SKU alrady added.Please add another Size & SKU!'));
+                    }
+
+
+                    if ($attribute_size > 0) {
+                        return redirect()->back()->with(Session::flash('error_message','Size alrady added.Please add another Size!'));
+                    }
+                    if ($attribute_sku > 0) {
+                        return redirect()->back()->with(Session::flash('error_message','SKU alrady added.Please add another SKU!'));
+                    }
+
+                    $attributes = new ProductsAttribute;
+                    $attributes->product_id = $id;
+                    $attributes->sku = $data['sku'][$key];
+                    $attributes->size = $data['size'][$key];
+                    $attributes->price = $data['price'][$key];
+                    $attributes->stock = $data['stock'][$key];
+                    $attributes->status = 1;
+                    $attributes->save();
+                }
+
+            }
+            return redirect()->back()->with(Session::flash('success_message','Product Attributes added successfuly!'));
         }
         
-        $productData = Product::find($id);
+        $productData = Product::select('id','product_name','product_code','product_color','main_image')->with('attributes')->find($id);
         $title= "Product Attributes";
         $productData = json_decode(json_encode($productData),true);
         //echo "<pre>"; print_r($productData); die;
 
         return view('admin.products.add_attributes')->with(compact('productData','title'));
 
+    }
+
+    public function editattribute(Request $request, $id)
+    {
+        if ($request->isMethod('post')) {
+            $data= $request->all();
+            //$data = json_decode(json_encode($data),true);
+            //echo "<pre>"; print_r($data); die;
+
+                foreach ($data['attrId'] as $key => $value) {
+                    if (!empty($value)) {
+                        ProductsAttribute::where(['id'=>$data['attrId'][$key]])->update(['price'=>$data['price'][$key],'stock'=>$data['stock'][$key]]);
+                    }
+
+            }
+            return redirect()->back()->with(Session::flash('success_message','Product Attributes Update successfuly!'));
+         }
+    }
+
+    public function UpdateattributeStatus(Request $request)
+    {
+        if ($request->ajax()) {
+            # code...
+            $data = $request->all();
+            if ($data['status']=='Active') {
+                # code...
+                $status = 0;
+            }else{
+                $status = 1;
+            }
+            ProductsAttribute::where('id',$data['attribute_id'])->update(['status'=>$status]);
+            return response()->json(['status'=>$status,'attribute_id'=>$data['attribute_id']]);
+        }
+    }
+
+    public function deleteattribute($id)
+    {
+
+       $productData= ProductsAttribute::where('id',$id)->delete();
+
+        return redirect()->back()->with(Session::flash('success_message','Attribute deleted successfuly.'));
     }
 }

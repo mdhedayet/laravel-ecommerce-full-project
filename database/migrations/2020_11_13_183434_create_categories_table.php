@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta_title');
             $table->text('meta_description');
             $table->text('meta_keywords');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
     }

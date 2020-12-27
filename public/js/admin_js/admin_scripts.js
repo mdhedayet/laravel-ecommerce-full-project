@@ -168,11 +168,32 @@ $(function () {
   });
 
 
+   //attribute active inactive
+  $('.updateattributeStatus').click(function(){
+      var status =$(this).text();
+      var attribute_id =$(this).attr('attribute_id');
+      $.ajax({
+            type:'post',
+            url:'/admin/update-attribute-status',
+            data:{status:status,attribute_id:attribute_id},
+            success:function(resp) {
+                if (resp['status']==0) {
+                    $('#attribute-'+attribute_id).html("Inactive").css('color', 'red');
+                }else if (resp['status']==1){
+                    $('#attribute-'+attribute_id).html("Active").css('color', 'green');
+                }
+            },error:function(){
+                alert('Error');
+            }
+      });
+  });
+
+
 // product attributes 
         var maxField = 10; //Input fields increment limitation
         var addButton = $('.add_button'); //Add button selector
         var wrapper = $('.field_wrapper'); //Input field wrapper
-        var fieldHTML = '<div><input type="text" name="size[]" placeholder="Size" style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="text" name="sku[]"  placeholder="SKU" style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="text" name="price[]"placeholder="Price"  style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="text" name="stock[]"placeholder="Stock"  style="margin-top: 5px; margin-right:3px; width:90px;"/><a href="javascript:void(0);" class="remove_button btn btn-danger btn-sm" style="margin-left: 5px !important;margin-top: -4px !important;"><i class="fas fa-trash"></i></a></div>'; //New input field html 
+        var fieldHTML = '<div><input type="text" name="size[]" placeholder="Size" required="" style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="text" name="sku[]"  placeholder="SKU" required="" style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="number" name="price[]"placeholder="Price" required=""  style="margin-top: 5px; margin-right:3px; width:90px;"/><input type="number" name="stock[]" placeholder="Stock" required=""  style="margin-top: 5px; margin-right:3px; width:90px;"/><a href="javascript:void(0);" class="remove_button btn btn-danger btn-sm" style="margin-left: 5px !important;margin-top: -4px !important;"><i class="fas fa-trash"></i></a></div>'; //New input field html 
         var x = 1; //Initial field counter is 1
         
         //Once add button is clicked
