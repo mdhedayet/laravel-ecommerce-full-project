@@ -90,6 +90,8 @@
                       @endif
                   </td>
                 <td >
+                    <a class="btn btn-info btn-sm " href="{{url('admin/add-images/'.$product->id)}}" title="Add Images"><i class="fas fa-plus-circle"></i></a>
+                    &nbsp;
                     <a class="btn btn-success btn-sm " href="{{url('admin/add-edit-attribute/'.$product->id)}}" title="Add/Edit Attribute"><i class="fas fa-plus"></i></a>
                     &nbsp;
                     <a class="btn btn-primary btn-sm " href="{{url('admin/add-edit-product/'.$product->id)}}" title="Edit Product"><i class="fas fa-edit"></i></a>
