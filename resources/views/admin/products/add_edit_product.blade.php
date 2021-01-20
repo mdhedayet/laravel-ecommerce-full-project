@@ -93,32 +93,42 @@
                         <label for="exampleInputEmail1">Product Name<span style="color: red;"> *</span></label>
                         <input class="form-control" type="text" name="product_name" id="product_name" @if(!empty($productData['product_name'])) value="{{$productData['product_name']}}" @else value="{{old('product_name')}}" @endif placeholder="Enter product name">
                     </div> 
+
+                    
               </div>
               <div class="col-md-6">
-                  
                   <div class="form-group">
+                        <label>Select Brand</label>
+                        <select name="brand_id" id="brand_id" class="form-control select2" style="width: 100%;">
+                            <option value="">Select</option>
+                            @foreach ($brands as $brand)
+                            <option value="{{$brand['id']}}" @if(!empty($productData['brand_id'])&& $productData['brand_id']==$brand['id']) selected='' @endif>{{$brand['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Product Code<span style="color: red;"> *</span></label>
                         <input class="form-control" type="text" name="product_code" id="product_code" @if(!empty($productData['product_code'])) value="{{$productData['product_code']}}" @else value="{{old('product_code')}}" @endif placeholder="Enter Product Code">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Product Color<span style="color: red;"> *</span></label>
-                        <input class="form-control" type="text" name="product_color" id="product_color" @if(!empty($productData['product_color'])) value="{{$productData['product_color']}}" @else value="{{old('product_color')}}" @endif placeholder="Enter Product Color">
-                    </div>  
-              </div> 
+                  </div>
               <div class="col-md-6">
-                  <div class="form-group">
+                <div class="form-group">
                         <label for="exampleInputEmail1">Product Price<span style="color: red;"> *</span></label>
                         <input class="form-control" type="number" name="product_price" id="product_price" @if(!empty($productData['product_price'])) value="{{$productData['product_price']}}" @else value="{{old('product_price')}}" @endif placeholder="Enter Product Price">
                     </div> 
+                <div class="form-group">
+                        <label for="exampleInputEmail1">Product Color<span style="color: red;"> *</span></label>
+                        <input class="form-control" type="text" name="product_color" id="product_color" @if(!empty($productData['product_color'])) value="{{$productData['product_color']}}" @else value="{{old('product_color')}}" @endif placeholder="Enter Product Color">
+                    </div> 
+                     
+              </div> 
+              <div class="col-md-6">
+                  
                   <div class="form-group">
                         <label for="exampleInputEmail1">Product Discount (%)</label>
                         <input class="form-control" type="number" name="product_discount" id="product_discount" @if(!empty($productData['product_discount'])) value="{{$productData['product_discount']}}" @else value="{{old('product_discount')}}" @endif placeholder="Enter Product Discount (1 to 100)">
                     </div> 
-              </div> 
-              <div class="col-md-6">
-                  
-                   
-                  <div class="form-group">
+                    <div class="form-group">
                     <label for="exampleInputFile">Product Image</label>
                     <label class="float-right" style="color: rgb(216, 104, 0);">Recommended Image Size:( 1040px X 1200 px )</label>
                     <div class="row col-12" style="margin:0; padding:0;">
@@ -139,6 +149,8 @@
                     
                    </div>
                   </div>
+              </div> 
+              <div class="col-md-6">
                    <div class="form-group">
                         <label for="exampleInputFile">Product Video</label>
                         <div class="row col-12" style="margin:0; padding:0;">
@@ -163,6 +175,11 @@
                     
                    </div>
                   </div>
+
+                  <div class="form-group">
+                        <label for="exampleInputEmail1">Product Weight</label>
+                        <input class="form-control" type="number" name="product_weight" id="product_weight" @if(!empty($productData['product_weight'])) value="{{$productData['product_weight']}}" @else value="{{old('product_weight')}}" @endif placeholder="Enter Product Weight">
+                   </div>
                   
                 </div> 
 
@@ -170,10 +187,7 @@
 
                     
                  
-                  <div class="form-group">
-                        <label for="exampleInputEmail1">Product Weight</label>
-                        <input class="form-control" type="number" name="product_weight" id="product_weight" @if(!empty($productData['product_weight'])) value="{{$productData['product_weight']}}" @else value="{{old('product_weight')}}" @endif placeholder="Enter Product Weight">
-                   </div>
+                  
                   <div class="form-group">
                         <label>Select fabric</label>
                         <select name="fabric" id="fabric" class="form-control select2" style="width: 100%;">
@@ -184,11 +198,7 @@
 
                         </select>
                     </div>
-                </div> 
-
-                <div class="col-md-6">
-
-                  <div class="form-group">
+                    <div class="form-group">
                         <label>Select sleeve</label>
                         <select name="sleeve" id="sleeve" class="form-control select2" style="width: 100%;">
                             <option value="">Select</option>
@@ -197,6 +207,11 @@
                             @endforeach
                         </select>
                     </div>
+                </div> 
+
+                <div class="col-md-6">
+
+                  
                   <div class="form-group">
                         <label>Select fit</label>
                         <select name="fit" id="fit" class="form-control select2" style="width: 100%;">
@@ -206,10 +221,7 @@
                             @endforeach
                         </select>
                     </div>
-                    </div> 
-
-                <div class="col-md-6">
-                  <div class="form-group">
+                    <div class="form-group">
                         <label>Select pattern</label>
                         <select name="pattern" id="pattern" class="form-control select2" style="width: 100%;">
                             <option value="">Select</option>
@@ -218,6 +230,10 @@
                             @endforeach
                         </select>
                     </div>
+                    </div> 
+
+                <div class="col-md-6">
+                  
                   <div class="form-group">
                         <label>Select occassion</label>
                         <select name="occassion" id="occassion" class="form-control select2" style="width: 100%;">
@@ -227,10 +243,7 @@
                             @endforeach
                         </select>
                     </div>
-                    </div> 
-
-                <div class="col-md-6">
-                  <div class="form-group">
+                    <div class="form-group">
                         <label>Product is featured?</label>
                         <select name="is_featured" id="is_featured" class="form-control select2" style="width: 100%;">
                             <option value="No">Select</option>
@@ -238,39 +251,36 @@
                             <option value="Yes" @if(!empty($productData['is_featured'])&& $productData['is_featured']=="Yes") selected='' @endif>Yes</option>
                         </select>
                     </div>
+                    </div> 
+
+                <div class="col-md-6">
+                  
                      
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Wash Care</label>
+                    <textarea class="form-control" name="wash_care" id="wash_care" rows="3" placeholder="Enter Product Wash Care">@if(!empty($productData['wash_care'])){{$productData['wash_care']}}@else{{old('wash_care')}}@endif</textarea>
+                  </div>
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Product Description<span style="color: red;"> *</span></label>
+                    <textarea class="form-control" name="description" id="description" rows="7" placeholder="Enter Product Description">@if(!empty($productData['description'])){{$productData['description']}}@else{{old('description')}}@endif</textarea>
+                  </div>
+                      </div> 
+
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Meta Title</label>
                         <input class="form-control" type="text" name="meta_title" id="meta_title" @if(!empty($productData['meta_title'])) value="{{$productData['meta_title']}}" @else value="{{old('meta_title')}}" @endif placeholder="Enter Meta Title">
                     </div> 
-                      </div> 
-
-                <div class="col-md-6">
-                    
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Product Description<span style="color: red;"> *</span></label>
-                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter Product Description">@if(!empty($productData['description'])){{$productData['description']}}@else{{old('description')}}@endif</textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Wash Care</label>
-                    <textarea class="form-control" name="wash_care" id="wash_care" rows="3" placeholder="Enter Product Wash Care">@if(!empty($productData['wash_care'])){{$productData['wash_care']}}@else{{old('wash_care')}}@endif</textarea>
-                  </div>
-  </div> 
-
-                <div class="col-md-6">
                   
                   <div class="form-group">
                     <label for="exampleInputEmail1">Meta Keywords</label>
                     <textarea class="form-control" name="meta_keywords" id="meta_keywords" rows="3" placeholder="Enter Meta Keywords">@if(!empty($productData['meta_keywords'])){{$productData['meta_keywords']}}@else{{old('meta_keywords')}}@endif</textarea>
                     </div>
-
                     <div class="form-group">
                     <label for="exampleInputEmail1">Meta Description</label>
                     <textarea class="form-control" name="meta_description" id="meta_description" rows="3" placeholder="Enter Meta Description">@if(!empty($productData['meta_description'])){{$productData['meta_description']}}@else{{old('meta_description')}}@endif</textarea>
                     </div>
-                </div>
-                
-
+                  </div> 
             </div>
 
           </div>

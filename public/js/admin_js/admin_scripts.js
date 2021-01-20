@@ -66,6 +66,28 @@ $(function () {
             }
       });
   });
+
+  //brands active inactive
+  $('.updateBrandstatus').click(function(){
+      var status =$(this).children("i").attr("status");
+      var brand_id =$(this).attr('brand_id');
+      $.ajax({
+            type:'post',
+            url:'/admin/update-brand-status',
+            data:{status:status,brand_id:brand_id},
+            success:function(resp) {
+                if (resp['status']==0) {
+                    $('#brand-'+brand_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>").css('color', 'red');
+                }else if (resp['status']==1){
+                    $('#brand-'+brand_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>").css('color', 'green');
+                }
+            },error:function(){
+                alert('Error');
+            }
+      });
+  });
+
+
   //Category active inactive
   $('.updateCategoryStatus').click(function(){
       var status =$(this).text();

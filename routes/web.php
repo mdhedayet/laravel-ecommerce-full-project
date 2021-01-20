@@ -60,5 +60,12 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
         Route::match(['get', 'post'], 'add-images/{id}', 'ProductsController@addimages');
         Route::post('update-image-status','ProductsController@UpdateimageStatus');
         Route::get('delete-image/{id}','ProductsController@deleteimage');
+
+
+        //brands
+        Route::get('brands','BrandController@Brands');
+        Route::post('update-brand-status','BrandController@Updatebrandsstatus');
+        Route::match(['get', 'post'], 'add-edit-brand/{id?}', 'BrandController@addeditbrand');
+        Route::get('delete-brand/{id}','BrandController@deletebrand');
     });
 });

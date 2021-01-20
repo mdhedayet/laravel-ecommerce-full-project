@@ -11,6 +11,7 @@ use App\Category;
 use App\ProductsImage;
 use Session;
 use Image;
+use App\Brand;
 
 class ProductsController extends Controller
 {
@@ -67,6 +68,7 @@ class ProductsController extends Controller
             $rules = [
                 'category_id' => ['required'],
                 'product_code' => ['required'],
+                'brand_id' => ['required'],
                 'product_color' => ['required'],
                 'product_price' => ['required','numeric'],
                 'product_name' => ['required','min:3'],
@@ -74,6 +76,7 @@ class ProductsController extends Controller
             ];
             $coustomMessages = [
                 'category_id.required' => 'Pleace select a Category.',
+                'brand_id.required' => 'Pleace select a Brand.',
                 'product_name.required' => 'Product Name is required.',
                 'product_code.required' => 'Product Code is required.',
                 'product_color.required' => 'Product color is required.',
@@ -89,6 +92,7 @@ class ProductsController extends Controller
 
                 'category_id',
                 'section_id',
+                'brand_id',
                 'product_name',
                 'product_code',
                 'product_color',
@@ -189,6 +193,7 @@ class ProductsController extends Controller
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
+            $product->brand_id = $data['brand_id'];
             $product->product_color = $data['product_color'];
             $product->product_price = $data['product_price'];
             $product->product_discount = $data['product_discount'];
@@ -225,8 +230,13 @@ class ProductsController extends Controller
          //echo "<pre>"; print_r($categories); die;
 
 
+        // Add brands
+        $brands = Brand::where('status',1)->get();
+        $brands = json_decode(json_encode($brands),true);
 
-        return view('admin.products.add_edit_product')->with(compact('title','fabricArray','sleeveArray','patternArray','fitArray','occassionArray','categories','productData'));
+
+
+        return view('admin.products.add_edit_product')->with(compact('title','fabricArray','sleeveArray','patternArray','fitArray','occassionArray','categories','productData','brands'));
     }
 
     public function deleteProduct($id)
