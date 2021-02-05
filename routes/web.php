@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Auth::routes();
 
@@ -68,4 +68,9 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
         Route::match(['get', 'post'], 'add-edit-brand/{id?}', 'BrandController@addeditbrand');
         Route::get('delete-brand/{id}','BrandController@deletebrand');
     });
+});
+
+Route::namespace('Front')->group(function(){
+
+    Route::get('/', 'IndexController@index');
 });

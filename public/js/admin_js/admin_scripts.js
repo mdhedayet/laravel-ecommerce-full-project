@@ -48,7 +48,7 @@ $(function () {
 
 
   //section active inactive
-  $('.updateSectionStatus').click(function(){
+    $(document).on('click','.updateSectionStatus',function(){
       var status =$(this).text();
       var section_id =$(this).attr('section_id');
       $.ajax({
@@ -68,7 +68,7 @@ $(function () {
   });
 
   //brands active inactive
-  $('.updateBrandstatus').click(function(){
+    $(document).on('click','.updateBrandstatus',function(){
       var status =$(this).children("i").attr("status");
       var brand_id =$(this).attr('brand_id');
       $.ajax({
@@ -89,7 +89,7 @@ $(function () {
 
 
   //Category active inactive
-  $('.updateCategoryStatus').click(function(){
+    $(document).on('click','.updateCategoryStatus',function(){
       var status =$(this).text();
       var category_id =$(this).attr('category_id');
       $.ajax({
@@ -139,17 +139,17 @@ $(function () {
 
 
   // confirm delete
-  /* $('.confirmDelete').click(function(){
+    $(document).on('click','.confirmDelete',function(){
     var name=$(this).attr("name");
     if (confirm("Are you sure delete this" +name+ "?")) {
         return true;
     }
     return false;
-  }); */
+  });
 
 
   //sweet alart js
-  $('.confirmDelete').click(function(){
+    $(document).on('click','.confirmDelete',function(){ 
     var name=$(this).attr("name");
     var nameid=$(this).attr("nameid");
     Swal.fire({
@@ -170,7 +170,7 @@ $(function () {
 
 
    //product active inactive
-  $('.updateproductStatus').click(function(){
+    $(document).on('click','.updateproductStatus',function(){
       var status =$(this).text();
       var product_id =$(this).attr('product_id');
       $.ajax({
@@ -191,7 +191,7 @@ $(function () {
 
 
    //attribute active inactive
-  $('.updateattributeStatus').click(function(){
+    $(document).on('click','.updateattributeStatus',function(){
       var status =$(this).text();
       var attribute_id =$(this).attr('attribute_id');
       $.ajax({
@@ -219,7 +219,7 @@ $(function () {
         var x = 1; //Initial field counter is 1
         
         //Once add button is clicked
-        $(addButton).click(function(){
+        $(document).on('click','.addButton',function(){
             //Check maximum number of input fields
             if(x < maxField){ 
                 x++; //Increment field counter
@@ -239,7 +239,7 @@ $(function () {
 
 
            //product image active inactive
-  $('.updateImagestatus').click(function(){
+    $(document).on('click','.updateImagestatus',function(){
       var status =$(this).text();
       var image_id =$(this).attr('image_id');
       $.ajax({
