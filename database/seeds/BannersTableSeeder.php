@@ -16,29 +16,29 @@ class BannersTableSeeder extends Seeder
         $Banners= [
             [
                 'id'=>1,
-                'image'=>'',
+                'image'=>'girl1.jpg',
                 'link'=>'',
-                'title'=>'',
-                'description'=>'',
-                'alt'=>'',
+                'title'=>'100% Unick Design',
+                'description'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'alt'=>'100% Unick Design',
                 'status'=>1
             ],
             [
                 'id'=>2,
-                'image'=>'',
+                'image'=>'girl2.jpg',
                 'link'=>'',
-                'title'=>'',
-                'description'=>'',
-                'alt'=>'',
+                'title'=>'100% Unick Design',
+                'description'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'alt'=>'100% Unick Design',
                 'status'=>1
             ],
             [
                 'id'=>3,
-                'image'=>'',
+                'image'=>'girl3.jpg',
                 'link'=>'',
-                'title'=>'',
-                'description'=>'',
-                'alt'=>'',
+                'title'=>'100% Unick Design',
+                'description'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'alt'=>'100% Unick Design',
                 'status'=>1
             ],
         ];

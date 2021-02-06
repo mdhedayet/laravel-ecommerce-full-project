@@ -87,6 +87,26 @@ $(function () {
       });
   });
 
+  //banners active inactive
+    $(document).on('click','.updateBannerstatus',function(){
+      var status =$(this).children("i").attr("status");
+      var banner_id =$(this).attr('banner_id');
+      $.ajax({
+            type:'post',
+            url:'/admin/update-banner-status',
+            data:{status:status,banner_id:banner_id},
+            success:function(resp) {
+                if (resp['status']==0) {
+                    $('#banner-'+banner_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>").css('color', 'red');
+                }else if (resp['status']==1){
+                    $('#banner-'+banner_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>").css('color', 'green');
+                }
+            },error:function(){
+                alert('Error');
+            }
+      });
+  });
+
 
   //Category active inactive
     $(document).on('click','.updateCategoryStatus',function(){
@@ -137,15 +157,6 @@ $(function () {
       });
   });
 
-
-  // confirm delete
-    $(document).on('click','.confirmDelete',function(){
-    var name=$(this).attr("name");
-    if (confirm("Are you sure delete this" +name+ "?")) {
-        return true;
-    }
-    return false;
-  });
 
 
   //sweet alart js

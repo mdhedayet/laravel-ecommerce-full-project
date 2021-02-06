@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
 
 Auth::routes();
 
@@ -67,6 +64,13 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
         Route::post('update-brand-status','BrandController@Updatebrandsstatus');
         Route::match(['get', 'post'], 'add-edit-brand/{id?}', 'BrandController@addeditbrand');
         Route::get('delete-brand/{id}','BrandController@deletebrand');
+
+        //banners
+        Route::get('banners','BannersController@banners');
+        Route::post('update-banner-status','BannersController@Updatebannersstatus');
+        Route::get('delete-banner/{id}','BannersController@deletebanner');
+        Route::match(['get', 'post'], 'add-edit-banner/{id?}', 'BannersController@addeditbanners');
+        Route::get('delete-banner-image/{id}','BannersController@deletebannerImage');
     });
 });
 
