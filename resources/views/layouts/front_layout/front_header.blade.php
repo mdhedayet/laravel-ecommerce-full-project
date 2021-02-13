@@ -34,7 +34,7 @@ $sections =Section::sections();
 				<div class="row">
 					<div class="col-md-4 clearfix">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="{{asset('images/front_images/home/logo.png')}}" alt="" /></a>
+							<a href="{{url('/')}}"><img src="{{asset('images/front_images/home/logo.png')}}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right clearfix">
 							<div class="btn-group">
@@ -95,9 +95,9 @@ $sections =Section::sections();
                                     <li class="dropdown"><a href="#">{{$section['name']}}<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach ($section['categories'] as $category)
-                                            <li style="color: white;"><strong>{{$category['category_name']}}</strong></li>
+                                            <li style="color: white;"><a href="{{$category['url']}}"><strong>{{$category['category_name']}}</strong></a></li>
                                             @foreach ($category['subcategories'] as $subcategory)
-                                                <li><a href="shop.html"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
+                                                <li><a href="{{$subcategory['url']}}"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
                                             @endforeach
                                         @endforeach
                                     </ul>

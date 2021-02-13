@@ -14,7 +14,11 @@
                             <div class="single-products">
                                     <div class="productinfo text-center">
                                         <a href="#">
+                                            @if(isset($item['main_image']))
                                             <?php $product_iamge_path = 'images/product_images/medium/'.$item["main_image"]; ?>
+                                            @else 
+                                            <?php $product_iamge_path =''; ?>
+                                            @endif
                                             @if (!empty($item['main_image']) && file_exists($product_iamge_path))
                                                 <img src="{{url('images/product_images/medium/'.$item['main_image'])}}" alt="" />
                                             @else 
@@ -23,6 +27,7 @@
                                         </a>
                                         <h2>${{$item['product_price']}}</h2>
                                         <p>{{$item['product_name']}}</p>
+                                        <p>Brand: {{$item['brand']['name']}}</p>
                                     </div>
                             </div>
                             <div class="choose">
@@ -55,7 +60,11 @@
                 <div class="single-products">
                         <div class="productinfo text-center">
                             <a href="#">
+                                @if(isset($item['main_image']))
                                 <?php $product_iamge_path = 'images/product_images/medium/'.$item["main_image"]; ?>
+                                @else 
+                                <?php $product_iamge_path =''; ?>
+                                @endif
                                 @if (!empty($item['main_image']) && file_exists($product_iamge_path))
                                     <img src="{{url('images/product_images/medium/'.$item['main_image'])}}" alt="" />
                                 @else 
@@ -65,6 +74,7 @@
                             
                             <h2>${{$item['product_price']}}</h2>
                             <p>{{$item['product_name']}}</p>
+                            <p>Brand: {{$item['brand']['name']}}</p>
                         </div>
                 </div>
                 <div class="choose">

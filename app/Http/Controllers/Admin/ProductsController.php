@@ -141,8 +141,8 @@ class ProductsController extends Controller
 
                     //dd($name,$destinationPath);
                     Image::make($image_tmp)->save($large);
-                    Image::make($image_tmp)->resize(520,600)->save($medium);
-                    Image::make($image_tmp)->resize(260,300)->save($small);
+                    Image::make($image_tmp)->resize(484,441)->save($medium);
+                    Image::make($image_tmp)->resize(268,249)->save($small);
 
                     if(!empty($productData['main_image'])){
                         $image_path_large = public_path('images/product_images/large/'.$productData['main_image']);
@@ -218,11 +218,12 @@ class ProductsController extends Controller
          }
 
          //filter array
-         $fabricArray=array('cotton','polyester','Wool');
-         $sleeveArray=array('Full Sleeve','Half Sleeve','Short Sleeve','Sleeve less');
-         $patternArray=array('Checked','Plain','Printed','self','solid');
-         $fitArray=array('Reguler','Slim');
-         $occassionArray=array('Casual','Formal');
+         $productFilters = Product::productFilters();
+         $fabricArray = $productFilters['fabricArray'];
+         $sleeveArray = $productFilters['sleeveArray'];
+         $patternArray = $productFilters['patternArray'];
+         $fitArray = $productFilters['fitArray'];
+         $occassionArray = $productFilters['occassionArray'];
 
          //section with category and sub category
          $categories = Section::with('categories')->get();
@@ -406,8 +407,8 @@ class ProductsController extends Controller
 
                             //dd($name,$destinationPath);
                             Image::make($image_tmp)->save($large);
-                            Image::make($image_tmp)->resize(520,600)->save($medium);
-                            Image::make($image_tmp)->resize(260,300)->save($small);
+                            Image::make($image_tmp)->resize(484,441)->save($medium);
+                            Image::make($image_tmp)->resize(268,249)->save($small);
 
                             //save to database 
                             $productsImage = new ProductsImage;

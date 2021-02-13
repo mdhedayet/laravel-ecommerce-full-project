@@ -47,7 +47,7 @@
                   <th>Link</th>
                   <th>Alt</th>
                   <th>Title</th>
-                  <th style="width: 300px;">Description</th>
+                  <th style="width: 150px;">Description</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -69,7 +69,7 @@
                   <td>{{$banner['link']}}</td>
                   <td>{{$banner['alt']}}</td>
                   <td>{{$banner['title']}}</td>
-                  <td style="width: 300px;"><p>{{$banner['description']}}</p></td>
+                  <td style="width: 150px;"><p>{{$banner['description']}}</p></td>
                   <td>
                       @if ($banner['status'] == 1)
                       <a class="updateBannerstatus" id="banner-{{$banner['id']}}" banner_id="{{$banner['id']}}" style="color: rgb(0, 128, 0);" href="javascript:void(0)"><i class="fas fa-toggle-on" aria-hidden="true" status="Active"></i></a>

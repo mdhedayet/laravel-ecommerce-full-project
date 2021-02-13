@@ -28,7 +28,7 @@
     <!--header-->
 @include('layouts.front_layout.front_header')
     <!--/header-->
-	@include('front.homepage_banner')
+	@include('front.banners.homepage_banner')
 	
 	
 	<section>
@@ -52,11 +52,16 @@
 	
 
   
-    <script src="{{url('js/front_js/jquery.js')}}"></script>
-	<script src="{{url('js/front_js/bootstrap.min.js')}}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	{{-- <!-- jQuery -->
+    <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{url('plugins/jquery-ui/jquery-ui.min.js')}}"></script> --}}
+    <script src="{{url('js/front_js/bootstrap.min.js')}}"></script>
 	<script src="{{url('js/front_js/jquery.scrollUp.min.js')}}"></script>
 	<script src="{{url('js/front_js/price-range.js')}}"></script>
     <script src="{{url('js/front_js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{url('js/front_js/main.js')}}"></script>
+    <script src="{{url('js/front_js/front_scripts.js')}}"></script>
 </body>
 </html>
