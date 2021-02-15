@@ -52,7 +52,7 @@
 								<h2>{{$productDetails['product_name']}}</h2>
 								<p>Product ID: {{$productDetails['product_code']}}</p>
 								<p><b><label>Product Size: </label></b> <span>
-								<select name="" id="">
+								<select name="" id=""  class="form-control">
 									<option value="">Select</option>
 									@foreach ($productDetails['attributes'] as $attribute)
 										<option value="">{{$attribute['size']}}</option>
@@ -201,6 +201,27 @@
         </div>
     </div><!--/RECOMMENDED ITEMS-->
 	@endif
-					
-				</div>
+</div>
+
+<script>
+	const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+</script>
 @endsection

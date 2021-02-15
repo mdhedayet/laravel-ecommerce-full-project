@@ -20,7 +20,7 @@ body {
 .img-display{
     overflow: hidden;
     width: 100%;
-    height: 392px;
+    height: 394px;
     border: 1px solid #F7F7F0;
 }
 .img-showcase{
@@ -30,7 +30,7 @@ body {
 }
 .img-showcase img{
     width: 100%;
-    height: 392px;
+    height: 394px;
 }
 .img-select{
     display: flex;
@@ -309,7 +309,7 @@ a#scrollUp i {
     outline: medium none;
     padding-left: 10px;
     width: 155px;
-    background-image: url(../images/home/searchicon.png);
+    background-image: url(/images/front_images/home/searchicon.png);
     background-repeat: no-repeat;
     background-position: 130px;
 }
@@ -819,6 +819,7 @@ h2.title:before {
 .shipping {
     background-color: #F2F2F2;
     margin-top: 40px;
+    margin-bottom: 40px;
     overflow: hidden;
     padding-top: 20px;
     position: relative;
@@ -862,6 +863,13 @@ h2.title:before {
 }
 
 .features_items {
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+.all_category_items {
+    overflow: hidden;
+}
+.home_featured_items {
     overflow: hidden;
 }
 
@@ -1072,6 +1080,7 @@ h2.title {
 
 .recommended_items {
     overflow: hidden;
+    margin-bottom: 40px;
 }
 
 #recommended-item-carousel .carousel-inner .item {
@@ -1204,7 +1213,7 @@ h2.title {
 
 .view-product img {
     border: 1px solid #F7F7F0;
-    height: 392px;
+    height: 394px;
     width: 100%;
 }
 
@@ -1326,7 +1335,7 @@ h2.title {
 
 .shop-details-tab {
     border: 1px solid #F7F7F0;
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     margin-left: 15px;
     margin-right: 15px;
     padding-bottom: 10px;

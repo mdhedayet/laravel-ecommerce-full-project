@@ -1,7 +1,7 @@
 @extends('layouts.front_layout.front_layout')
 @section('contant')
  <div class="col-sm-9 padding-right">
-        <div class="recommended_items"><!--FEATURES ITEMS-->
+        <div class="home_featured_items"><!--FEATURES ITEMS-->
         <h2 class="title text-center">FEATURES ITEMS</h2>
         
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">

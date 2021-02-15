@@ -1,8 +1,8 @@
 @extends('layouts.front_layout.front_layout')
 @section('contant')
 <div class="col-sm-9 padding-right">
-    <div class="features_items">
-        <!--features_items-->
+    <div class="all_category_items">
+        <!--all_category_items-->
         <h2 class="title text-center">{{$CategoryDetails['CategoryDetails']['category_name']}}</h2>
         <div style="margin-bottom: 30px !important;" class="form-inline col-sm-12">
             <span class="float-left">{{$categoryPrductsCount}} Items found </span>

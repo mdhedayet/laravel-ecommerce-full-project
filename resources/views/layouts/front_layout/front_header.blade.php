@@ -95,9 +95,9 @@ $sections =Section::sections();
                                     <li class="dropdown"><a href="#">{{$section['name']}}<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach ($section['categories'] as $category)
-                                            <li style="color: white;"><a href="{{$category['url']}}"><strong>{{$category['category_name']}}</strong></a></li>
+                                            <li style="color: white;"><a href="{{url($category['url'])}}"><strong>{{$category['category_name']}}</strong></a></li>
                                             @foreach ($category['subcategories'] as $subcategory)
-                                                <li><a href="{{$subcategory['url']}}"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
+                                                <li><a href="{{url($subcategory['url'])}}"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
                                             @endforeach
                                         @endforeach
                                     </ul>

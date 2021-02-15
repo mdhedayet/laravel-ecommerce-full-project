@@ -20,9 +20,9 @@ $sections =Section::sections();
                     <div class="panel-body">
                         <ul>
                             @foreach ($section['categories'] as $category)
-                            <li><a href="{{$category['url']}}"> {{$category['category_name']}}</a></li>
+                            <li><a href="{{url($category['url'])}}"> {{$category['category_name']}}</a></li>
                                 @foreach ($category['subcategories'] as $subcategory)
-                                <li><a href="{{$subcategory['url']}}"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
+                                <li><a href="{{url($subcategory['url'])}}"><i class='fa fa-angle-double-right'>&nbsp;</i>{{$subcategory['category_name']}}</a></li>
                                 @endforeach
                             @endforeach
                         </ul>
@@ -138,7 +138,7 @@ $sections =Section::sections();
 @endif
     
 
-    <div class="brands_products"><!--brands_products-->
+   {{--  <div class="brands_products"><!--brands_products-->
         <h2>Brands</h2>
         <div class="brands-name">
             <ul class="nav nav-pills nav-stacked">
@@ -159,10 +159,12 @@ $sections =Section::sections();
                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
         </div>
-    </div><!--/price-range-->
+    </div><!--/price-range--> --}}
 
     <div class="shipping text-center"><!--shipping-->
+        <a href="{{url('t-shirts')}}">
         <img src="{{asset('images/front_images/home/shipping.jpg')}}" alt="" />
+        </a>
     </div><!--/shipping-->
 
 </div>
