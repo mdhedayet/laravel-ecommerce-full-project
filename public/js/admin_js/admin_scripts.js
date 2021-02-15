@@ -230,7 +230,7 @@ $(function () {
         var x = 1; //Initial field counter is 1
         
         //Once add button is clicked
-        $(document).on('click','.addButton',function(){
+        $(addButton).click(function(){
             //Check maximum number of input fields
             if(x < maxField){ 
                 x++; //Increment field counter

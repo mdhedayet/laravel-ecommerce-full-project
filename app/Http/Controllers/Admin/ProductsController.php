@@ -140,7 +140,7 @@ class ProductsController extends Controller
                     $small =public_path('images/product_images/small/'.$name);
 
                     //dd($name,$destinationPath);
-                    Image::make($image_tmp)->save($large);
+                    Image::make($image_tmp)->resize(1200,1094)->save($large);
                     Image::make($image_tmp)->resize(484,441)->save($medium);
                     Image::make($image_tmp)->resize(268,249)->save($small);
 
@@ -406,7 +406,7 @@ class ProductsController extends Controller
                             $small =public_path('images/product_images/small/'.$name);
 
                             //dd($name,$destinationPath);
-                            Image::make($image_tmp)->save($large);
+                            Image::make($image_tmp)->resize(1200,1094)->save($large);
                             Image::make($image_tmp)->resize(484,441)->save($medium);
                             Image::make($image_tmp)->resize(268,249)->save($small);
 

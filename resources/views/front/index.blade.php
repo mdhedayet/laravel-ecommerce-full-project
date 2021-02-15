@@ -13,7 +13,7 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="#">
+                                        <a href="{{url('product/'.$item['id'])}}">
                                             @if(isset($item['main_image']))
                                             <?php $product_iamge_path = 'images/product_images/medium/'.$item["main_image"]; ?>
                                             @else 
@@ -32,7 +32,7 @@
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-expand"></i>View Details</a></li>
+                                    <li><a href="{{url('product/'.$item['id'])}}"><i class="fa fa-eye"></i>View Details</a></li>
                                     <li><a href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a></li>
                                 </ul>
                             </div>
@@ -59,7 +59,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="#">
+                            <a href="{{url('product/'.$item['id'])}}">
                                 @if(isset($item['main_image']))
                                 <?php $product_iamge_path = 'images/product_images/medium/'.$item["main_image"]; ?>
                                 @else 
@@ -79,7 +79,7 @@
                 </div>
                 <div class="choose">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-expand"></i>View Details</a></li>
+                        <li><a href="{{url('product/'.$item['id'])}}"><i class="fa fa-eye"></i>View Details</a></li>
                         <li><a href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a></li>
                     </ul>
                 </div>

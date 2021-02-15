@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Pagination\Paginator;
 use App\Category;
 use App\Product;
 
-class ProductsController extends Controller
+class FrontProductsController extends Controller
 {
     //
-    public function listing($url,Request $request)
-    {
+    public function listing(Request $request)
+    {   
+        Paginator::useBootstrap();
+        $url = Route::getFacadeRoot()->current()->uri();
         if ($request->ajax()) {
 
             $data = $request->all();
@@ -79,7 +83,6 @@ class ProductsController extends Controller
             }
 
         }else {
-
             $categoryCount = Category::where(['url'=>$url,'status'=>1])->count();
             if ($categoryCount>0) {
             # code...
@@ -110,5 +113,26 @@ class ProductsController extends Controller
             }
 
         }
+    }
+
+    public function detail($id)
+    {
+        $productDetails = Product::with('brand','attributes','images','category')->where('status',1)->find($id)->toArray();
+        
+        $catid = $productDetails['category']['id'];
+        $reletedProduct = Product::with('brand')->where('category_id',$catid)->where('status',1)->limit(10)->get()->toArray();
+
+        foreach ($reletedProduct as $key => $item) {
+            if ($item['id']==$id) {
+                unset($reletedProduct[$key]);
+            }
+        }
+
+        $reletedProductChunk = array_chunk($reletedProduct,3);
+
+        //dd($reletedProductChunk); die;
+        //dd($productDetails); die;
+
+        return view('front.products.detail')->with(compact('productDetails','reletedProductChunk'));
     }
 }
