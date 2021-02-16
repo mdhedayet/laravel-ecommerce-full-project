@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     /* $("#sort").on('change',function() {
         this.form.submit();
     }); */
@@ -114,12 +119,27 @@ $(document).ready(function(){
         });
     });
 
-      function get_filter(class_name) {
-                var filter = [];
-                $('.' + class_name + ':checked').each(function() {
-                    filter.push($(this).val());
-                });
-                return filter;
+    function get_filter(class_name) {
+            var filter = [];
+            $('.' + class_name + ':checked').each(function() {
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+
+    $("#getPrice").change(function(){
+        var size = $(this).val();
+        var product_id = $(this).attr("product_id");
+        $.ajax({
+            url:'/get-product-price',
+            type:"POST",
+            data:{size:size,product_id:product_id},
+            success:function(resp){
+                //alert(resp)
+                $('.getAttrPrice').html("$"+resp+"");
             }
+        });
+    });
+    
 
 });

@@ -336,7 +336,7 @@ class ProductsController extends Controller
             return redirect()->back()->with(Session::flash('success_message','Product Attributes added successfuly!'));
         }
         
-        $productData = Product::select('id','product_name','product_code','product_color','main_image')->with('attributes')->find($id);
+        $productData = Product::select('id','product_name','product_price','product_code','product_color','main_image')->with('attributes')->find($id);
         $title= "Product Attributes";
         $productData = json_decode(json_encode($productData),true);
         //echo "<pre>"; print_r($productData); die;

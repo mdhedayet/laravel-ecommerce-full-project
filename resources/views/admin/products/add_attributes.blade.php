@@ -64,6 +64,9 @@
                   <div class="form-group">
                         <label for="exampleInputEmail1">Product Color:	&nbsp;</label>{{$productData['product_color']}}
                     </div> 
+                  <div class="form-group">
+                        <label for="exampleInputEmail1">Default Price:	&nbsp;</label>${{$productData['product_price']}}
+                    </div> 
                   
               </div> 
               <div class="col-md-6">

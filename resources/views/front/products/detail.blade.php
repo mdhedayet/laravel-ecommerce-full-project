@@ -1,9 +1,31 @@
 @extends('layouts.front_layout.front_layout')
 @section('contant')
    <div class="col-sm-9 padding-right">
-					<div class="product-details"><!--product-details-->
-						<div class="col-sm-5">
-<div class = "product-imgs">
+
+	   @if (Session::get('error_message'))
+	   <div class="col-12" style="margin-top: 15px; margin-right: 15px; margin-left: 15px;">
+          <div class="alert alert-danger text-center " role="alert">
+            {{Session::get('error_message')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      @endif
+	  @if (Session::get('success_message'))
+	   <div class="col-12" style="margin-top: 15px; margin-right: 15px; margin-left: 15px;">
+          <div class="alert alert-success text-center " role="alert">
+            {{Session::get('success_message')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      @endif
+				
+<div class="product-details"><!--product-details-->
+	<div class="col-sm-5">
+	<div class = "product-imgs">
           <div class = "img-display">
             <div class = "img-showcase">
               	@if(isset($productDetails['main_image']))
@@ -46,33 +68,38 @@
           </div>
         </div>
 
-</div>
+</div>				
+					<form action="{{url('/add-to-cart')}}" method="POST">
+					@csrf
 						<div class="col-sm-7">
 							<div class="product-information">  <!--/product-information-->
 								<h2>{{$productDetails['product_name']}}</h2>
-								<p>Product ID: {{$productDetails['product_code']}}</p>
+								<p>Product Code: {{$productDetails['product_code']}}</p>
+								<input type="hidden" name="product_id" value="{{$productDetails['id']}}">
 								<p><b><label>Product Size: </label></b> <span>
-								<select name="" id=""  class="form-control">
+								<select name="size" id="getPrice" product_id="{{$productDetails['id']}}"  class="form-control">
 									<option value="">Select</option>
 									@foreach ($productDetails['attributes'] as $attribute)
-										<option value="">{{$attribute['size']}}</option>
+										<option value="{{$attribute['size']}}">{{$attribute['size']}}</option>
 									@endforeach
 								</select>
 								</span></p>
 								<span>
-									<span>${{$productDetails['product_price']}}</span>
+									<span class="getAttrPrice">${{$productDetails['product_price']}}</span>
 									<label>Quantity:</label>
-									<input type="text" value="1" />
-									<button type="button" class="btn btn-fefault cart">
+									<input type="number" name="quantity" value="1" />
+									<button type="submit" value="Submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
 								</span>
-								<p><b>Availability:</b> In Stock</p>
+								<p><b>In Stock: </b>{{$total_stock}}</p>
 								<p><b>Color:</b> {{$productDetails['product_color']}}</p>
 								<p><b>Brand:</b> {{$productDetails['brand']['name']}}</p>
 							</div><!--/product-information-->
 						</div>
+					</form>
+
 					</div><!--/product-details-->
 					
 					<div class="category-tab shop-details-tab"><!--category-tab-->

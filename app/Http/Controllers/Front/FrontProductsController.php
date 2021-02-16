@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Pagination\Paginator;
 use App\Category;
 use App\Product;
+use App\Cart;
+use App\ProductsAttribute;
+use Session;
+use Auth;
 
 class FrontProductsController extends Controller
 {
@@ -117,7 +121,9 @@ class FrontProductsController extends Controller
 
     public function detail($id)
     {
-        $productDetails = Product::with('brand','attributes','images','category')->where('status',1)->find($id)->toArray();
+        $productDetails = Product::with(['brand','attributes'=>function($query){
+            $query->where('status',1);
+        },'images','category'])->where('status',1)->find($id)->toArray();
         
         $catid = $productDetails['category']['id'];
         $reletedProduct = Product::with('brand')->where('category_id',$catid)->where('status',1)->limit(10)->get()->toArray();
@@ -130,9 +136,96 @@ class FrontProductsController extends Controller
 
         $reletedProductChunk = array_chunk($reletedProduct,3);
 
+        $total_stock= ProductsAttribute::where('product_id',$id)->sum('stock');
+
         //dd($reletedProductChunk); die;
         //dd($productDetails); die;
 
-        return view('front.products.detail')->with(compact('productDetails','reletedProductChunk'));
+        return view('front.products.detail')->with(compact('productDetails','reletedProductChunk','total_stock'));
+    }
+
+    public function getProductPrice(Request $request)
+    {
+        if($request->ajax()){
+            $data = $request->all();
+            //echo"<pre>"; print_r($data); die;
+            $getProductPrice = ProductsAttribute::where(['product_id'=>$data['product_id'],'size'=>$data['size']])->first();
+            if($data['size']==""){
+                $getProductPrice = Product::where(['id'=>$data['product_id']])->first();
+                return $getProductPrice->product_price;
+            }
+            $getProductPrice = ProductsAttribute::where(['product_id'=>$data['product_id'],'size'=>$data['size']])->first();
+            return $getProductPrice->price;
+        }
+    }
+
+    public function addtocart(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data);
+            $pattr = ProductsAttribute::where(['product_id'=>$data['product_id']])->first();
+
+
+            //condition for size select or not ...and set a value for empty size.
+            if (!empty($data['size'])) {
+                # code...
+                $getProductStock = ProductsAttribute::where(['product_id'=>$data['product_id'],'size'=>$data['size']])->first()->toArray();
+                if ($getProductStock['stock']<$data['quantity']) {
+                    # code...
+                    $message = "Requre quantity is not available";
+                    session::flash('error_message', $message);
+                    return redirect()->back();
+                }
+            }else{
+                if(!empty($pattr->size)){
+                    $message = "Pleace select product Size.";
+                    session::flash('error_message', $message);
+                    return redirect()->back();
+                }else{
+                    $data['size']='default';
+                }
+            }
+
+            //create session
+            $session_id = Session::get('session_id');
+            if (empty($session_id)) {
+                # code...
+                $session_id = Session::getId();
+                Session::put('session_id',$session_id);
+            }
+
+            //check user loged or not loged
+            if (Auth::check()) {
+                
+                $countProducts = Cart::where(['product_id'=>$data['product_id'],'size'=>$data['size'],'user_id'=>Auth::user()->id])->count();
+                $user_id = Auth::user()->id;
+            }else{
+                $countProducts = Cart::where(['product_id'=>$data['product_id'],'size'=>$data['size'],'session_id'=>Session::get('session_id')])->count();
+                $user_id = 0;
+            }
+
+            //check Product Already Exist in Your Cart
+            if ($countProducts>0) {
+                $message = "Product Already Exist in Your Cart.";
+                session::flash('error_message', $message);
+                return redirect()->back();
+            }
+
+            //dd($session_id); die;
+
+            //save to card info
+            $cart = new Cart;
+            $cart->session_id = $session_id;
+            $cart->user_id =$user_id;
+            $cart->product_id = $data['product_id'];
+            $cart->size = $data['size'];
+            $cart->quantity = $data['quantity'];
+            $cart->save();
+
+            $message = "Product has been added in Cart.";
+            session::flash('success_message', $message);
+            return redirect()->back();
+        }
     }
 }
