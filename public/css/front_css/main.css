@@ -182,7 +182,6 @@ a#scrollUp i {
 }
 
 .header-middle .container .row {
-    border-bottom: 1px solid #f5f5f5;
     margin-left: 0;
     margin-right: 0;
     padding-bottom: 20px;
@@ -265,8 +264,10 @@ a#scrollUp i {
 }
 
 .header-bottom {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     padding-top: 30px;
+    margin-bottom: 40px;
+    background: #F2F2F2;
 }
 
 .navbar-collapse.collapse {
@@ -299,9 +300,10 @@ a#scrollUp i {
 }
 
 .search_box input {
-    background: #F0F0E9;
+    margin-top: -5px;
+    background: #ffffff;
     border: medium none;
-    color: #B2B2B2;
+    color: #ffffff;
     font-family: 'roboto';
     font-size: 12px;
     font-weight: 300;
@@ -386,7 +388,7 @@ ul.sub-menu {
 **************************/
 
 #footer {
-    background: #F0F0E9;
+        background: #F2F2F2;
 }
 
 .footer-top .container {
@@ -503,7 +505,7 @@ ul.sub-menu {
 }
 
 .footer-widget {
-    margin-bottom: 68px;
+    margin-bottom: 40px;
 }
 
 .footer-widget .container {
@@ -580,7 +582,7 @@ ul.sub-menu {
 }
 
 .footer-bottom {
-    background: #D6D6D0;
+    background: #F2F2F2;
     padding-top: 10px;
 }
 
@@ -1018,14 +1020,33 @@ h2.title {
     padding-left: 0;
     padding-right: 0;
 }
+.choose ul li button {
+    color: #B3AFA8;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .choose ul li a i {
+    margin-right: 5px;
+}
+.choose ul li button i {
     margin-right: 5px;
 }
 
 .choose ul li a:hover {
     background: none;
     color: #FE980F;
+}
+.choose ul li button:hover {
+    background: none;
+    color: #FE980F;
+    border: none;
+    outline: none;
 }
 
 .category-tab {
@@ -1598,8 +1619,9 @@ h2.title {
 }
 
 #cart_items .cart_info {
-    border: 1px solid #E6E4DF;
-    margin-bottom: 50px
+    border: 1px solid #f2f2f2;
+    margin-bottom: 50px;
+    margin-top: 30px;
 }
 
 #cart_items .cart_info .cart_menu {
@@ -1667,12 +1689,20 @@ h2.title {
     color: #696763;
     display: inline-block;
     font-size: 16px;
+    cursor: pointer;
     height: 28px;
     overflow: hidden;
     text-align: center;
     width: 35px;
     float: left;
     line-height: 28px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .cart_quantity_input {
@@ -1724,7 +1754,7 @@ h2.title {
 
 #do_action .total_area,
 #do_action .chose_area {
-    border: 1px solid #E6E4DF;
+    border: 1px solid #f2f2f2;
     color: #696763;
     padding: 30px 25px 30px 0;
     margin-bottom: 80px;
@@ -1735,7 +1765,7 @@ h2.title {
 }
 
 .total_area ul li {
-    background: #E6E4DF;
+    background: #f2f2f2;
     color: #696763;
     margin-top: 10px;
     padding: 7px 20px;

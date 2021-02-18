@@ -163,7 +163,7 @@ class FrontProductsController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->all();
-            //echo "<pre>"; print_r($data);
+            //echo "<pre>"; print_r($data); die;
             $pattr = ProductsAttribute::where(['product_id'=>$data['product_id']])->first();
 
 
@@ -178,7 +178,7 @@ class FrontProductsController extends Controller
                     return redirect()->back();
                 }
             }else{
-                if(!empty($pattr->size)){
+                if(!empty($pattr->size) && $data['page']=='product_detail_page'){
                     $message = "Pleace select product Size.";
                     session::flash('error_message', $message);
                     return redirect()->back();
@@ -227,5 +227,13 @@ class FrontProductsController extends Controller
             session::flash('success_message', $message);
             return redirect()->back();
         }
+    }
+
+    public function cart()
+    {
+        $userCartItems = Cart::userCartItems();
+        //echo "<pre>"; print_r($userCartItems); die;
+        $page_name ="cart";
+        return view('front.products.cart')->with(compact('page_name','userCartItems'));
     }
 }

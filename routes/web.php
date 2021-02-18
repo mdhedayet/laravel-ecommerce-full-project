@@ -92,7 +92,10 @@ Route::namespace('Front')->group(function(){
     }
     //product details page
     Route::get('/product/{id}', [FrontProductsController::class, 'detail']);
-    
+    //ajax price update route
     Route::post('/get-product-price', [FrontProductsController::class, 'getProductPrice']);
+    //add to cart route
     Route::post('/add-to-cart', [FrontProductsController::class, 'addtocart']);
+    //cart route
+    Route::get('/cart', [FrontProductsController::class, 'cart']);
 });
